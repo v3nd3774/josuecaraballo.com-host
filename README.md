@@ -7,12 +7,14 @@ This is a repository to store the source code for the [`josuecaraballo.com`](jav
 There is a CDN service that caches data which is produced by a load balancer. 
 The load balancer forwards traffic to instances in an autoscale group which process and respond to the `HTTP` requests.
 The figure below illustrates this flow.
-
-![Infrastructure Illustration](images/AmazonEC2Infrastructure.png)
+<p align="center">
+  <img alt="Infrastructure Illustration" src="images/AmazonEC2Infrastructure.png">
+</p>
 
 ## But how do they produce the `HTTP` traffic?
 
 There is a Clojure webapp that interfaces with a database to respond to the `HTTP` requests.
 The figure below illustrates this flow.
-
-![EC2 Contents Illustration](images/AmazonEC2Contents.png)
+<p align="center">
+  <img alt="EC2 Contents Illustration" src="images/AmazonEC2Contents.png">
+</p>
