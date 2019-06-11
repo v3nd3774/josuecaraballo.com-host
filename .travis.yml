@@ -1,0 +1,29 @@
+env:
+  global:
+    - REPO=josuecaraballo.com-host
+services:
+  - docker
+before_install:
+  - pip install awscli
+  - mkdir -p ~/$TRAVIS_BUILD_NUMBER
+  - aws s3 sync s3://travis-artifacts-$REPO/$TRAVIS_BUILD_NUMBER ~/$TRAVIS_BUILD_NUMBER
+matrix:
+  include:
+    - stage: build
+      language: clojure
+      jdk: oraclejdk8
+      script:
+        - scripts/build.sh jar
+        - scripts/build.sh image
+    - stage: deploy
+      script:
+        - scripts/push-image-dockerhub.sh
+        - scripts/aws-stack.sh delete
+        - scripts/aws-stack.sh create
+    - stage: acceptance-test
+      language: python
+      python: 3.6
+      before_script:
+        - cd behave && pip install -r requirements.txt
+      script:
+        - cd behave && behave
