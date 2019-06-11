@@ -11,7 +11,7 @@ matrix:
   include:
     - stage: build
       language: clojure
-      jdk: oraclejdk8
+      jdk: oraclejdk12
       script:
         - scripts/build.sh jar
         - scripts/build.sh image
