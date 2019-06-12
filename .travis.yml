@@ -15,6 +15,7 @@ matrix:
     - stage: deploy
       before_script:
         - pip install --user awscli
+        - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
       script:
         - scripts/push-image-dockerhub.sh
         - scripts/aws-stack.sh delete
