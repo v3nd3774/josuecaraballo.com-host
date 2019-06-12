@@ -5,4 +5,4 @@ env t target
 copy . $appdir
 workdir $appdir
 run ls $t | grep standalone | xargs -i mv $t/{} "$jar"
-cmd ["java", "-jar", "$jar"]
+cmd ["sh", "-c", "java -jar $jar"]
