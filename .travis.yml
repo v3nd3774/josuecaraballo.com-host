@@ -4,8 +4,6 @@ env:
     - PATH=$HOME/.local/bin:$PATH
 services:
   - docker
-before_install:
-  - pip install --user awscli
 matrix:
   include:
     - stage: build
@@ -15,6 +13,8 @@ matrix:
         - scripts/build.sh jar
         - scripts/build.sh image
     - stage: deploy
+      before_script:
+        - pip install --user awscli
       script:
         - scripts/push-image-dockerhub.sh
         - scripts/aws-stack.sh delete
