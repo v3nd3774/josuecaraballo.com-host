@@ -1,6 +1,8 @@
 #!/bin/bash
 set -x
 source scripts/set-env.sh
+aws s3 cp s3://josuecaraballo.com-host/$KEY_PATH .
+chmod 400 $KEY_PATH
 if [ "$1" = "delete" ]; then
   for publicdns_string in $(
   aws ec2 describe-instances | \
