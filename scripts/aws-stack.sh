@@ -20,6 +20,7 @@ if [ "$1" = "delete" ]; then
     ssh -o StrictHostKeyChecking=no -i $KEY_PATH ec2-user@$publicdns '
       sudo docker container stop $(docker container ls -aq)
       sudo docker container rm $(docker container ls -aq)
+      sudo docker rmi $(docker images -a -q)
     '
   done
 elif [ "$1" = "create" ]; then
