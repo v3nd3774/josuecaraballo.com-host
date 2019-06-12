@@ -1,13 +1,9 @@
 #!/bin/bash
-project=josuecaraballo.com-host
-if [ -z "$TRAVIS_BUILD_NUMBER" ]; then
-  TRAVIS_BUILD_NUMBER=DEV
-fi
-project_version=`cat project.clj | grep def | perl -ne "print \$1 if /.+\"(.*?)\".+/" -`
+source scripts/set-env.sh
 if [ "$1" = "jar" ]; then
   lein uberjar
 elif [ "$1" = "image" ]; then
-  docker build -t v3nd3774/$project:$TRAVIS_BUILD_NUMBER .
+  docker build -t $docker_tag
 else
   echo "$1 not in (jar|image)..."
   exit 1
