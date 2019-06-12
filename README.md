@@ -1,19 +1,20 @@
-# josuecaraballo.com-host
+## What is this repo?
 
-FIXME
+This is a repository to store the source code for the [`josuecaraballo.com`](javascript:void(0)).
 
-## Prerequisites
+## How does this work?
 
-You will need [Leiningen][] 2.0.0 or above installed.
+There is a CDN service that caches data which is produced by a load balancer. 
+The load balancer forwards traffic to instances in an autoscale group which process and respond to the `HTTP` requests.
+The figure below illustrates this flow.
+<p align="center">
+  <img alt="Infrastructure Illustration" src="images/AmazonEC2Infrastructure.png">
+</p>
 
-[leiningen]: https://github.com/technomancy/leiningen
+## But how do they produce the `HTTP` traffic?
 
-## Running
-
-To start a web server for the application, run:
-
-    lein ring server
-
-## License
-
-Copyright © 2019 FIXME
+There is a Clojure webapp that interfaces with a database to respond to the `HTTP` requests.
+The figure below illustrates this flow.
+<p align="center">
+  <img alt="EC2 Contents Illustration" src="images/AmazonEC2Contents.png">
+</p>
