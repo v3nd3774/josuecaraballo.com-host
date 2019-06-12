@@ -1,7 +1,8 @@
 from clojure
 env jar app-standalone.jar
 env appdir /usr/src/app
+env t target
 copy . $appdir
 workdir $appdir
-run ls target | grep standalone | xargs -i mv $appdir/{} "$jar"
+run ls $t | grep standalone | xargs -i mv $t/{} "$jar"
 cmd ["java", "-jar", "$jar"]
