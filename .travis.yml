@@ -1,0 +1,32 @@
+env:
+  global:
+    - REPO=josuecaraballo.com-host
+    - PATH=$HOME/.local/bin:$PATH
+services:
+  - docker
+matrix:
+  include:
+    - stage: build
+      language: clojure
+      jdk: oraclejdk11
+      before_script:
+        - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+      script:
+        - scripts/build.sh jar
+        - scripts/build.sh image && scripts/push-img.sh
+    - stage: deploy
+      before_script:
+        - pip install --user awscli
+      script:
+        - scripts/aws-stack.sh delete
+        - scripts/aws-stack.sh create
+    - stage: acceptance-test
+      sudo: false
+      language: python
+      dist: xenial
+      python: 3.7
+      install:
+        - npm install -g allure-commandline
+        - travis_retry pip install -q -r requirements.txt
+      script:
+        - behave

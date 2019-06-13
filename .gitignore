@@ -178,3 +178,5 @@ tags
 [._]*.un~
 
 # End of https://www.gitignore.io/api/git,vim,python,clojure
+jq.exe.stackdump
+*.pem
