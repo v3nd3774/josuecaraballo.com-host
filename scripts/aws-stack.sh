@@ -18,10 +18,10 @@ if [ "$1" = "delete" ]; then
   ); do
     publicdns=`echo $publicdns_string | perl -ne 'print $1 if /"(.*?)"/' -`
     ssh -o StrictHostKeyChecking=no -i $KEY_PATH ec2-user@$publicdns '
-      sudo docker ps -a -q
-      sudo docker rm $(sudo docker ps -a -q) || true
-      sudo docker wait $(sudo docker ps -a -q) || true
-      sudo docker rmi $(sudo docker images -a -q) || true
+      docker ps -a -q
+      docker rm $(docker ps -a -q) || true
+      docker wait $(docker ps -a -q) || true
+      docker rmi $(docker images -a -q) || true
     '
   done
 elif [ "$1" = "create" ]; then
@@ -44,7 +44,7 @@ elif [ "$1" = "create" ]; then
       sudo amazon-linux-extras install -y docker
       sudo service docker start
       sudo usermod -a -G docker ec2-user
-      sudo docker run -p $h_port:$c_port $docker_tag
+      docker run -p $h_port:$c_port $docker_tag
     "
   done
 else
