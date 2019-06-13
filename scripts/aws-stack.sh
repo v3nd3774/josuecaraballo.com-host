@@ -18,8 +18,8 @@ if [ "$1" = "delete" ]; then
   ); do
     publicdns=`echo $publicdns_string | perl -ne 'print $1 if /"(.*?)"/' -`
     ssh -o StrictHostKeyChecking=no -i $KEY_PATH ec2-user@$publicdns '
-      sudo docker container stop $(sudo docker container ls -aq) || true
-      sudo docker container rm $(sudo docker container ls -aq) || true
+      sudo docker ps -a -q
+      sudo docker rm $(sudo docker ps -a -q) || true
       sudo docker rmi $(sudo docker images -a -q) || true
     '
   done
