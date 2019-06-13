@@ -26,7 +26,7 @@ matrix:
       dist: xenial
       python: 3.7
       install:
-        travis_retry pip install -q -r requirements.txt
+        - npm install -g allure-commandline
+        - travis_retry pip install -q -r requirements.txt
       script:
-        - python --version
         - behave
