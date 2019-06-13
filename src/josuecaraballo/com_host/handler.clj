@@ -1,7 +1,9 @@
 (ns josuecaraballo.com-host.handler
   (:require [compojure.core :refer :all]
             [compojure.route :as route]
-            [ring.middleware.defaults :refer [wrap-defaults site-defaults]]))
+            [ring.adapter.jetty :refer [run-jetty]]
+            [ring.middleware.defaults :refer [wrap-defaults site-defaults]])
+  (:gen-class))
 
 (defroutes app-routes
   (GET "/" [] "Hello World")
@@ -11,4 +13,4 @@
   (wrap-defaults app-routes site-defaults))
 
 (defn -main [& args]
-  (ring-jetty/run-jetty app))
+  (run-jetty app {:port 3000}))
