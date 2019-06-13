@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/v3nd3774/josuecaraballo.com-host.svg?branch=master)](https://travis-ci.org/v3nd3774/josuecaraballo.com-host)
 ## What is this repo?
 
 This is a repository to store the source code for the [`josuecaraballo.com`](javascript:void(0)).

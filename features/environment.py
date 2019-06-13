@@ -1,3 +1,3 @@
 def before_feature(context, feature):
-    context.url = "http://josuecaraballocom-host-455600807.us-west-2.elb.amazonaws.com"
+    context.url = "http://d3sqwxpp55yz25.cloudfront.net"
     context.opts = {}
