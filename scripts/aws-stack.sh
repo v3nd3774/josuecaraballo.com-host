@@ -18,9 +18,9 @@ if [ "$1" = "delete" ]; then
   ); do
     publicdns=`echo $publicdns_string | perl -ne 'print $1 if /"(.*?)"/' -`
     ssh -o StrictHostKeyChecking=no -i $KEY_PATH ec2-user@$publicdns '
-      sudo docker container stop $(docker container ls -aq)
-      sudo docker container rm $(docker container ls -aq)
-      sudo docker rmi $(docker images -a -q)
+      sudo docker container stop $(docker container ls -aq) || true
+      sudo docker container rm $(docker container ls -aq) || true
+      sudo docker rmi $(docker images -a -q) || true
     '
   done
 elif [ "$1" = "create" ]; then
