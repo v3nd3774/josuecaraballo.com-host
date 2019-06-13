@@ -23,7 +23,7 @@ matrix:
     - stage: acceptance-test
       language: python
       python: 3.5
-      install:
+      before_script:
         - pip install --user -r requirements.txt
       script:
         - behave
