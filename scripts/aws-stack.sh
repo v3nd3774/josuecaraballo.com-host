@@ -19,8 +19,9 @@ if [ "$1" = "delete" ]; then
     publicdns=`echo $publicdns_string | perl -ne 'print $1 if /"(.*?)"/' -`
     ssh -o StrictHostKeyChecking=no -i $KEY_PATH ec2-user@$publicdns '
       docker ps -a -q
-      docker rm $(docker ps -a -q) || true
+      docker stop $(docker ps -a -q) || true
       docker wait $(docker ps -a -q) || true
+      docker rm $(docker ps -a -q) || true
       docker rmi $(docker images -a -q) || true
     '
   done
