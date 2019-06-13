@@ -44,7 +44,7 @@ elif [ "$1" = "create" ]; then
       sudo amazon-linux-extras install -y docker
       sudo service docker start
       sudo usermod -a -G docker ec2-user
-      docker run -p $h_port:$c_port $docker_tag
+      docker run -d -p $h_port:$c_port $docker_tag
     "
   done
 else
