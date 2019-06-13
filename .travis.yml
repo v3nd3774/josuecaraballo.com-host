@@ -23,7 +23,7 @@ matrix:
     - stage: acceptance-test
       language: python
       python: 3.6
-      before_script:
+      install:
         - cd behave && pip install -r requirements.txt
       script:
         - cd behave && behave
