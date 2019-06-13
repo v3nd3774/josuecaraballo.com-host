@@ -20,6 +20,7 @@ if [ "$1" = "delete" ]; then
     ssh -o StrictHostKeyChecking=no -i $KEY_PATH ec2-user@$publicdns '
       sudo docker ps -a -q
       sudo docker rm $(sudo docker ps -a -q) || true
+      sudo docker wait $(sudo docker ps -a -q) || true
       sudo docker rmi $(sudo docker images -a -q) || true
     '
   done
