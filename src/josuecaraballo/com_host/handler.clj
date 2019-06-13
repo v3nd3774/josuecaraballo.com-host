@@ -9,3 +9,6 @@
 
 (def app
   (wrap-defaults app-routes site-defaults))
+
+(defn -main [& args]
+  (ring-jetty/run-jetty app))
