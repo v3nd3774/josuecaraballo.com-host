@@ -57,3 +57,5 @@ commodo rhoncus nec vel augue. Pellentesque tortor massa, dignissim ut sagittis
 sed, hendrerit vitae nunc. Nam gravida, urna vitae hendrerit rutrum, felis augue
 vulputate tortor, ut varius velit libero nec lectus. In adipiscing massa in est
 scelerisque ullamcorper. Vivamus in nisi metus.
+
+\\[ \\ln x = \\int_{-\\infty}^x \\frac 1 y \\, dy . \\]

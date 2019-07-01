@@ -1,3 +1,6 @@
 #!/bin/bash
 source scripts/set-env.sh
-stack exec ${site_exec_path} watch
+source scripts/build.sh
+cd $site
+stack exec `site_exec_path` watch
+cd ..
