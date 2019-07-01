@@ -2,5 +2,4 @@
 title: Contact
 ---
 
-I live in a small hut in the mountains of Kumano Kodō on Kii Hantō and would not
-like to be contacted.
+I live in Bedford, TX and you can reach me via email at [josue.caraballo@gmail.com](mailto:josue.caraballo@gmail.com) or through my linkedin profile [josue-caraballo](https://www.linkedin.com/in/josue-caraballo/).

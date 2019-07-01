@@ -10,12 +10,12 @@ pandocMathCompiler =
     let mathExtensions = [Ext_tex_math_dollars, Ext_tex_math_double_backslash,
                           Ext_latex_macros]
         defaultExtensions = writerExtensions defaultHakyllWriterOptions
-        newExtensions = foldr S.insert defaultExtensions mathExtensions
+        newExtensions = defaultExtensions `mappend` pandocExtensions `mappend` extensionsFromList mathExtensions
         writerOptions = defaultHakyllWriterOptions {
                           writerExtensions = newExtensions,
                           writerHTMLMathMethod = MathJax ""
                         }
-    in pandocMathCompilerWith defaultHakyllReaderOptions writerOptions
+    in pandocCompilerWith defaultHakyllReaderOptions writerOptions
 main :: IO ()
 main = hakyll $ do
     match "images/*" $ do
@@ -26,7 +26,7 @@ main = hakyll $ do
         route   idRoute
         compile compressCssCompiler
 
-    match (fromList ["about.rst", "contact.markdown"]) $ do
+    match (fromList ["about.markdown", "contact.markdown"]) $ do
         route   $ setExtension "html"
         compile $ pandocMathCompiler
             >>= loadAndApplyTemplate "templates/default.html" defaultContext
