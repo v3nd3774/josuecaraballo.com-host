@@ -95,6 +95,13 @@ packages:
       sha256: 6d476ca0749f65af061ba7e490ec9cd1933d815c564ecc85ad5f53676fc9672a
   original:
     hackage: skylighting-core-0.7.7@sha256:bcee301c4031c22937c1310512ca6d83b3660e2395b7797450bdfe755cde9200,8008
+- completed:
+    hackage: lrucache-1.2.0.1@sha256:18fc3d7052012c7ab3cd395160f34b53c5e1ec5379cc45185baf35b90ffadc2e,1254
+    pantry-tree:
+      size: 619
+      sha256: 61b2a39a11873f2d8a577e1f6b5e848d2f465ea7f6837ce15436796d3a20eda0
+  original:
+    hackage: lrucache-1.2.0.1@sha256:18fc3d7052012c7ab3cd395160f34b53c5e1ec5379cc45185baf35b90ffadc2e,1254
 snapshots:
 - completed:
     size: 509471

@@ -53,6 +53,7 @@ extra-deps:
 - hslua-module-text-0.1.2.1@sha256:d6f42f71dfbe6ef10edf6abb3357292cb0f251670097611050fc1a7f9aa6526d,1415
 - skylighting-0.7.7@sha256:0339943c68b761f45cd046b32975224744ebfdcbf5dafd55e0364f412f490b7f,10194
 - skylighting-core-0.7.7@sha256:bcee301c4031c22937c1310512ca6d83b3660e2395b7797450bdfe755cde9200,8008
+- lrucache-1.2.0.1@sha256:18fc3d7052012c7ab3cd395160f34b53c5e1ec5379cc45185baf35b90ffadc2e,1254
 
 # Override default flag values for local packages and extra-deps
 # flags: {}
