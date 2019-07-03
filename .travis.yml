@@ -5,7 +5,7 @@ matrix:
   include:
     - stage: build
       language: haskell
-      before_script:
+      install:
         # Download and unpack the stack executable
         - mkdir -p ~/.local/bin
         - export PATH=$HOME/.local/bin:$PATH
