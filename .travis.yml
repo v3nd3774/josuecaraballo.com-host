@@ -1,25 +1,24 @@
 env:
   global:
-    - REPO=josuecaraballo.com-host
+    - USER=v3nd3774
+    - REPO=v3nd3774.github.io
     - PATH=$HOME/.local/bin:$PATH
-services:
-  - docker
 matrix:
   include:
     - stage: build
-      language: clojure
+      language: haskell
       jdk: oraclejdk11
-      before_script:
-        - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+      before_install:
+        # Download and unpack the stack executable
+        - mkdir -p ~/.local/bin
+        - export PATH=$HOME/.local/bin:$PATH
+        - travis_retry curl -L https://get.haskellstack.org/stable/linux-x86_64.tar.gz | tar xz --wildcards --strip-components=1 -C ~/.local/bin '*/stack'
+        - npm install -g lessc
       script:
-        - scripts/build.sh jar
-        - scripts/build.sh image && scripts/push-img.sh
+        - scripts/build.sh
     - stage: deploy
-      before_script:
-        - pip install --user awscli
       script:
-        - scripts/aws-stack.sh delete
-        - scripts/aws-stack.sh create
+        - scripts/deploy_master.sh
     - stage: acceptance-test
       sudo: false
       language: python
