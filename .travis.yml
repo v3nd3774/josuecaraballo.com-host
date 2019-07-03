@@ -10,7 +10,7 @@ matrix:
         - mkdir -p ~/.local/bin
         - export PATH=$HOME/.local/bin:$PATH
         - travis_retry curl -L https://get.haskellstack.org/stable/linux-x86_64.tar.gz | tar xz --wildcards --strip-components=1 -C ~/.local/bin '*/stack'
-        - stack install hakyll
+        - stack install hakyl --resolver lts-12.26l
         - npm install -g lessc
       script:
         - scripts/build.sh
