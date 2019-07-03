@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/v3nd3774/josuecaraballo.com-host.svg?branch=master)](https://travis-ci.org/v3nd3774/josuecaraballo.com-host)
+[![Build Status](https://travis-ci.org/v3nd3774/v3nd3774.github.io.svg?branch=static_site)](https://travis-ci.org/v3nd3774/v3nd3774.github.io)
 
 ## What is this repo?
 
