@@ -1,13 +1,10 @@
 env:
   global:
-    - USER=v3nd3774
-    - REPO=v3nd3774.github.io
     - PATH=$HOME/.local/bin:$PATH
 matrix:
   include:
     - stage: build
       language: haskell
-      jdk: oraclejdk11
       before_install:
         # Download and unpack the stack executable
         - mkdir -p ~/.local/bin
