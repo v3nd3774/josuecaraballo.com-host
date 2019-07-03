@@ -10,12 +10,12 @@ Right now I\'m really enjoying `Jason Aaron's run on Doctor Strange!`_
 
 The games I love to play and my usernames on them currently are:
 
-  - Steam: `v3nd3774`_
-    1. DotA 2
-  - Battle.net: `v3nd3774#1993`_
-    2. Overwatch
-  - Switch online: `SW-8222-4266-8618`_
-    3. Super Mario Maker 2
+- Steam: `v3nd3774`_
+  1. DotA 2
+- Battle.net: `v3nd3774#1993`_
+  2. Overwatch
+- Switch online: `SW-8222-4266-8618`_
+  3. Super Mario Maker 2
 
 Here\'s `my GitHub`_, I like to put stuff up on git.
 
