@@ -1,0 +1,33 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: futtetennista/hakyll:latest
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "f0:23:a4:32:17:cb:28:cf:51:4a:8b:20:ee:fe:6f:d1"
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-stack-work-{{ checksum "josuecaraballo/josuecaraballo.cabal" }}
+      - run:
+          name: Build the static site generator executable
+          command: cd josuecaraballo && stack build
+      - save_cache:
+          key: v1-stack-work-{{ checksum "josuecaraballo/josuecaraballo.cabal" }}
+          paths:
+            - ~/v3nd3774.github.io/josuecaraballo/.stack-work
+            - /root/.stack
+      - run:
+          name: Build the site
+          command: cd josuecaraballo && stack exec site rebuild
+      - store_artifacts:
+          path: josuecaraballo/_site
+          destination: built_site
+      - deploy:
+          name: Deploy to Github Pages
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              .circleci/deploy.sh
+            fi
