@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: futtetennista/hakyll:latest
+      - image: ivotron/hakyll:4.6.7.0
     steps:
       - add_ssh_keys:
           fingerprints:
