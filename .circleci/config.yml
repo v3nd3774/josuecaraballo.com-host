@@ -13,7 +13,10 @@ jobs:
             - v1-stack-work-{{ checksum "josuecaraballo/josuecaraballo.cabal" }}
       - run:
           name: Build the static site generator executable
-          command: cd josuecaraballo && stack build
+          command: >-
+            cd josuecaraballo
+            && stack setup
+            && stack build
       - save_cache:
           key: v1-stack-work-{{ checksum "josuecaraballo/josuecaraballo.cabal" }}
           paths:
