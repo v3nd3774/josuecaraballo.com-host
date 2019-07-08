@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: ivotron/hakyll:4.6.7.0
+      - image: haskell:8.6.5
     steps:
       - add_ssh_keys:
           fingerprints:
