@@ -20,7 +20,7 @@ jobs:
           key: v1-stack-work-{{ checksum "josuecaraballo/josuecaraballo.cabal" }}
           paths:
             - ~/v3nd3774.github.io/josuecaraballo/.stack-work
-            - /root/.stack
+            - ~/.stack
       - run:
           name: Build the site
           command: cd josuecaraballo && stack exec site rebuild
