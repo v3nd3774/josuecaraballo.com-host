@@ -30,7 +30,7 @@ jobs:
             apt-get update
             && apt-get -y install curl
             && curl -sL https://deb.nodesource.com/setup_13.x | bash -
-            && apt-get install -y nodejs
+            && apt-get install -y nodejs openssh-client
             && npm install -g lessc
             && echo 'export PATH="$PATH:/usr/lib/node_modules/lessc/node_modules/.bin"' >> $BASH_ENV
             && ls -alh /usr/lib/node_modules/lessc/node_modules/.bin
