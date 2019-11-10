@@ -7,3 +7,9 @@ git add .
 git merge -m "Publish blog" static_site
 git commit -m "Publish blog"
 git push
+git checkout static_site
+git merge -m "fast forward" master
+rm -rf *.html css/ images/ posts/
+git add .
+git commit -m "fast forward"
+git push
