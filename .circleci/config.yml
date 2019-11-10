@@ -23,17 +23,14 @@ jobs:
             - ~/.stack
       - run:
           name: Install OS-level dependencies
-          environment:
-            node_modules: "/usr/lib/node_modules/lessc/node_modules"
           command: >-
             apt-get update
             && apt-get -y install curl
             && curl -sL https://deb.nodesource.com/setup_13.x | bash -
             && apt-get install -y nodejs
             && npm install -g lessc
-            && echo 'export PATH="$PATH:$node_modules/.bin"' >> $BASH_ENV
-            && source $BASH_ENV
-            && ls -alh $node_modules
+            && echo 'export PATH="$PATH:/usr/lib/node_modules/lessc/node_modules/.bin"' >> $BASH_ENV
+            && ls -alh /usr/lib/node_modules/lessc/node_modules/.bin
             && npm list -g --depth=0
       - run:
           name: Build the site
