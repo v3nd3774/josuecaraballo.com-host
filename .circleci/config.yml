@@ -50,6 +50,7 @@ jobs:
           command: |
             if [ "${CIRCLE_BRANCH}" == "static_site" ]; then
               set -x
+              git config core.sshCommand 'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
               git config user.email "circlecibot@josuecaraballo.com"
               git config user.name "CircleCI Bot"
               cp -a josuecaraballo/_site/. .
