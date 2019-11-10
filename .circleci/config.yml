@@ -23,7 +23,9 @@ jobs:
             - ~/.stack
       - run:
           name: Build the site
-          command: cd josuecaraballo && stack -j4 exec site rebuild
+          command: >-
+            cd josuecaraballo
+            && stack exec site rebuild
       - store_artifacts:
           path: josuecaraballo/_site
           destination: built_site
