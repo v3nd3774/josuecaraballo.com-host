@@ -8,3 +8,4 @@ This is a repository to store the source code for the [`josuecaraballo.com`](jos
 stack install hakyll
 npm install -g less
 ```
+
