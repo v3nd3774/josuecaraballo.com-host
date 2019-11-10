@@ -60,7 +60,7 @@ jobs:
               git merge --strategy-option theirs -m "[ci skip] Publish git merge blog" static_site
               rm -rf *.html css/ images/ posts/
               git add .
-              git commit -am "[ci skip] Remove static files prepping for new files"
+              git commit -am "[ci skip] Remove static files prepping for new files" || echo "don't exit on lack of static files here. It's OK"
               git stash pop
               git commit -am "[ci skip] Publish blog with generated HTML"
               git push --set-upstream origin master
