@@ -63,11 +63,11 @@ jobs:
               git commit -am "[ci skip] Remove static files prepping for new files"
               git stash pop
               git commit -am "[ci skip] Publish blog with generated HTML"
-              git push
+              git push --set-upstream origin master
               git checkout static_site
               git merge --strategy-option theirs -m "fast forward" master
               rm -rf *.html css/ images/ posts/
               git add .
               git commit -m "[ci skip] fast forward"
-              git push
+              git push --set-upstream origin static_site
             fi
