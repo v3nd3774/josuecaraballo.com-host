@@ -12,4 +12,4 @@ git merge -m "fast forward" master
 rm -rf *.html css/ images/ posts/
 git add .
 git commit -m "fast forward"
-git push
+git push --set-upstream origin static_site
