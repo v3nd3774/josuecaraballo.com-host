@@ -47,10 +47,10 @@ jobs:
           command: |
             if [ "${CIRCLE_BRANCH}" == "static_site" ]; then
               cp -a josuecaraballo/_site/. .
+              git add .
               git stash
               git checkout master
               git stash pop
-              git add .
               git merge -m "Publish blog" static_site
               git commit -m "Publish blog"
               git push
