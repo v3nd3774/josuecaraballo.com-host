@@ -56,12 +56,11 @@ jobs:
               git stash
               git checkout master
               git merge --strategy-option theirs -m "Publish git merge blog" static_site
-              git commit -m "[ci skip] Merge static into master"
               git stash pop
               git commit -am "[ci skip] Publish blog with generated HTML"
               git push
               git checkout static_site
-              git merge -m "fast forward" master
+              git merge --strategry-option ours -m "fast forward" master
               rm -rf *.html css/ images/ posts/
               git add .
               git commit -m "[ci skip] fast forward"
