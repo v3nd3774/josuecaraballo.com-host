@@ -21,6 +21,10 @@ lessCss = getResourceString
           >>= withItemBody (unixFilter "lessc" ["-"])
 main :: IO ()
 main = hakyll $ do
+    match "pdfs/*" $ do
+        route   idRoute
+        compile copyFileCompiler
+
     match "images/*" $ do
         route   idRoute
         compile copyFileCompiler
