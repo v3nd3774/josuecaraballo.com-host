@@ -60,7 +60,7 @@ jobs:
               git commit -am "[ci skip] Publish blog with generated HTML"
               git push
               git checkout static_site
-              git merge --strategry-option ours -m "fast forward" master
+              git merge --strategy-option ours -m "fast forward" master
               rm -rf *.html css/ images/ posts/
               git add .
               git commit -m "[ci skip] fast forward"
