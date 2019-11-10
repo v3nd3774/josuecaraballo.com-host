@@ -15,7 +15,7 @@ jobs:
           name: Build the static site generator executable
           command: >-
             cd josuecaraballo
-            && stack -j1 build
+            && stack -j4 build
       - save_cache:
           key: v1-stack-work-{{ checksum "josuecaraballo/josuecaraballo.cabal" }}
           paths:
@@ -23,7 +23,7 @@ jobs:
             - ~/.stack
       - run:
           name: Build the site
-          command: cd josuecaraballo && stack -j1 exec site rebuild
+          command: cd josuecaraballo && stack -j4 exec site rebuild
       - store_artifacts:
           path: josuecaraballo/_site
           destination: built_site
