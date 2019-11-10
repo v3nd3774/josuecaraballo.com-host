@@ -32,11 +32,13 @@ jobs:
             && apt-get install -y nodejs
             && npm install -g lessc
             && echo 'export PATH="$PATH:$node_modules/.bin"' >> $BASH_ENV
+            && source $BASH_ENV
             && npm list -g
       - run:
           name: Build the site
           command: >-
             cd josuecaraballo
+            && source $BASH_ENV
             && lessc --help
             && stack exec site rebuild
       - store_artifacts:
