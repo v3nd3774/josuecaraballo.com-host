@@ -1,0 +1,63 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: haskell:8.2.2
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "f0:23:a4:32:17:cb:28:cf:51:4a:8b:20:ee:fe:6f:d1"
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-stack-work-{{ checksum "josuecaraballo/josuecaraballo.cabal" }}
+      - run:
+          name: Build the static site generator executable
+          command: >-
+            cd josuecaraballo
+            && stack -j4 build
+      - save_cache:
+          key: v1-stack-work-{{ checksum "josuecaraballo/josuecaraballo.cabal" }}
+          paths:
+            - ~/v3nd3774.github.io/josuecaraballo/.stack-work
+            - ~/.stack
+      - run:
+          name: Install OS-level dependencies
+          command: >-
+            apt-get update
+            && apt-get -y install curl
+            && curl -sL https://deb.nodesource.com/setup_13.x | bash -
+            && apt-get install -y nodejs
+            && npm install -g lessc
+            && echo 'export PATH="$PATH:/usr/lib/node_modules/lessc/node_modules/.bin"' >> $BASH_ENV
+            && ls -alh /usr/lib/node_modules/lessc/node_modules/.bin
+            && npm list -g --depth=0
+      - run:
+          name: Build the site
+          command: >-
+            cd josuecaraballo
+            && source $BASH_ENV
+            && lessc --help
+            && stack exec site rebuild
+      - store_artifacts:
+          path: josuecaraballo/_site
+          destination: built_site
+      - deploy:
+          name: Deploy to Github Pages
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "static_site" ]; then
+              cp -a josuecaraballo/_site/. .
+              git stash
+              git checkout master
+              git stash pop
+              git add .
+              git merge -m "Publish blog" static_site
+              git commit -m "Publish blog"
+              git push
+              git checkout static_site
+              git merge -m "fast forward" master
+              rm -rf *.html css/ images/ posts/
+              git add .
+              git commit -m "fast forward"
+              git push
+            fi
