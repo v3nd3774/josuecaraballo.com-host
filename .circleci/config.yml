@@ -3,6 +3,9 @@ jobs:
   build:
     docker:
       - image: haskell:8.2.2
+    branches:
+      ignore:
+        - master
     steps:
       - add_ssh_keys:
           fingerprints:
@@ -27,7 +30,7 @@ jobs:
             apt-get update
             && apt-get -y install curl
             && curl -sL https://deb.nodesource.com/setup_13.x | bash -
-            && apt-get install -y nodejs
+            && apt-get install -y nodejs openssh-client
             && npm install -g lessc
             && echo 'export PATH="$PATH:/usr/lib/node_modules/lessc/node_modules/.bin"' >> $BASH_ENV
             && ls -alh /usr/lib/node_modules/lessc/node_modules/.bin
@@ -45,6 +48,26 @@ jobs:
       - deploy:
           name: Deploy to Github Pages
           command: |
-            if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              ls -alh josuecaraballo/_site
+            if [ "${CIRCLE_BRANCH}" == "static_site" ]; then
+              set -x
+              git config core.sshCommand 'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
+              git config user.email "circlecibot@josuecaraballo.com"
+              git config user.name "CircleCI Bot"
+              cp -a josuecaraballo/_site/. .
+              git add .
+              git stash
+              git checkout master
+              git merge --strategy-option theirs -m "[ci skip] Publish git merge blog" static_site
+              rm -rf *.html css/ images/ posts/
+              git add .
+              git commit -am "[ci skip] Remove static files prepping for new files"
+              git stash pop
+              git commit -am "[ci skip] Publish blog with generated HTML"
+              git push
+              git checkout static_site
+              git merge --strategy-option theirs -m "fast forward" master
+              rm -rf *.html css/ images/ posts/
+              git add .
+              git commit -m "[ci skip] fast forward"
+              git push
             fi
