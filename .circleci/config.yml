@@ -3,6 +3,9 @@ jobs:
   build:
     docker:
       - image: haskell:8.2.2
+    branches:
+      ignore:
+        - master
     steps:
       - add_ssh_keys:
           fingerprints:
@@ -46,18 +49,20 @@ jobs:
           name: Deploy to Github Pages
           command: |
             if [ "${CIRCLE_BRANCH}" == "static_site" ]; then
+              git config user.email "circlecibot@josuecaraballo.com"
+              git config user.name "CircleCI Bot"
               cp -a josuecaraballo/_site/. .
               git add .
               git stash
               git checkout master
               git stash pop
               git merge -m "Publish blog" static_site
-              git commit -m "Publish blog"
+              git commit -m "[ci skip] Publish blog"
               git push
               git checkout static_site
               git merge -m "fast forward" master
               rm -rf *.html css/ images/ posts/
               git add .
-              git commit -m "fast forward"
+              git commit -m "[ci skip] fast forward"
               git push
             fi
